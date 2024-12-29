@@ -1,25 +1,5 @@
 # Polaris Project Setup
 
-## 1. UI Package Setup (@polaris/ui)
-[] Create package structure
-  [] Initialize package.json
-  [] Setup TypeScript configuration
-  [] Create component directory structure
-[] Setup Tailwind CSS
-  [] Install dependencies
-  [] Configure tailwind.config.js
-  [] Setup CSS entry point
-[] Install and Configure shadcn/ui
-  [] Initialize shadcn/ui
-  [] Add core components
-  [] Setup component registry
-[] Create build configuration
-  [] Setup tsup/rollup
-  [] Configure package exports
-[] Add documentation
-  [] Component usage
-  [] Styling guidelines
-
 ## 2. Dashboard App Setup (@polaris/dashboard)
 [] Initialize Next.js application
   [] Create app directory structure
