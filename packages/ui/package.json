@@ -1,0 +1,40 @@
+{
+	"name": "@polaris/ui",
+	"version": "1.0.0",
+	"private": true,
+	"sideEffects": false,
+	"files": [
+		"tailwind.config.ts",
+		"postcss.config.js",
+		"globals.css"
+	],
+	"scripts": {
+		"clean": "rm -rf .turbo node_modules",
+		"lint": "biome check .",
+		"format": "biome format --write .",
+		"typecheck": "tsc --noEmit"
+	},
+	"exports": {
+		"./postcss": "./postcss.config.js",
+		"./tailwind.config": "./tailwind.config.ts",
+		"./globals.css": "./src/globals.css",
+		"./cn": "./src/utils/cn.ts"
+	},
+	"devDependencies": {
+		"@polaris/typescript-config": "workspace:*",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.49",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tailwindcss": "^3.4.17",
+		"typescript": "^5.7.2"
+	},
+	"dependencies": {
+		"@radix-ui/react-slot": "^1.1.1",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.469.0",
+		"tailwind-merge": "^2.6.0",
+		"tailwindcss-animate": "^1.0.7"
+	}
+}
