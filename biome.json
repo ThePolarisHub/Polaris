@@ -16,7 +16,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["node_modules", ".next", ".turbo", ".env"]
+		"ignore": ["node_modules", ".next", ".turbo", ".env", ".husky"]
 	},
 	"formatter": {
 		"enabled": true,
