@@ -23,8 +23,5 @@
 		"node": ">=22"
 	},
 	"packageManager": "bun@1.1.42",
-	"workspaces": [
-		"packages/*",
-		"apps/*"
-	]
+	"workspaces": ["packages/*", "apps/*"]
 }
