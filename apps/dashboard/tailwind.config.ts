@@ -1,18 +1,10 @@
+import baseConfig from "@polaris/ui/tailwind.config";
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
-  },
-  plugins: [],
+	content: [
+		"./src/**/*.{js,ts,jsx,tsx,mdx}",
+		"../../packages/ui/src/**/*.{ts,tsx}",
+	],
+	presets: [baseConfig],
 } satisfies Config;

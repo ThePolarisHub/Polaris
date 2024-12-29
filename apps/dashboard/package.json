@@ -3,10 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbopack",
 		"build": "next build",
+		"clean": "git clean -xdf .next .turbo node_modules",
+		"dev": "next dev --turbopack",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"format": "biome format --write .",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"react": "^19.0.0",
