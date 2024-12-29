@@ -1,0 +1,3 @@
+{
+	"extends": "@polaris/typescript-config/base.json"
+}
