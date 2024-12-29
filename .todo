@@ -1,46 +1,5 @@
 # Polaris Project Setup
 
-## 2 GitHub Actions Setup
-[] Basic CI Workflow
-  [] Setup Node.js environment
-  [] Configure Bun cache
-  [] Install dependencies
-[] Code Quality Checks
-  [] Run Biome lint and format
-  [] Run TypeScript checks
-  [] Check workspace dependencies
-[] Build Verification
-  [] Build all packages
-  [] Build all applications
-  [] Check for build errors
-
-## 3 PR and Issue Templates
-[] Pull Request Template
-  [] Feature PR template
-  [] Bug fix PR template
-  [] Documentation PR template
-[] Issue Templates
-  [] Bug report template
-  [] Feature request template
-  [] Documentation update template
-[] Automated Checks
-  [] PR title format check
-  [] PR description check
-  [] PR size check
-
-## 4 Code Quality Tools
-[] Setup Biome
-  [] Configure rules
-  [] Add ignore patterns
-  [] Setup auto-fix on commit
-[] Setup Husky
-  [] Add pre-commit hooks
-  [] Add commit message validation
-[] Setup VSCode Integration
-  [] Add recommended extensions
-  [] Configure editor settings
-  [] Add debug configurations
-
 ## 5. API Setup (@polaris/api)
 [] Setup Local Supabase Instance
   [] Install Supabase CLI
