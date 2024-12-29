@@ -1,20 +1,21 @@
 {
-	"name": "dashboard",
+	"name": "@polaris/dashboard",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"dev": "next dev --turbopack",
 		"build": "next build",
 		"clean": "git clean -xdf .next .turbo node_modules",
-		"dev": "next dev --turbopack",
-		"start": "next start",
 		"lint": "next lint",
 		"format": "biome format --write .",
+		"start": "next start",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
-		"next": "15.1.3"
+		"next": "15.1.3",
+		"@polaris/ui": "workspace:*"
 	},
 	"devDependencies": {
 		"typescript": "^5",
@@ -22,7 +23,6 @@
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"postcss": "^8",
-		"tailwindcss": "^3.4.1",
-		"@polaris/typescript-config": "workspace:*"
+		"tailwindcss": "^3.4.1"
 	}
 }
