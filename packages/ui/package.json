@@ -17,6 +17,7 @@
 		"./cn": "./src/utils/cn.ts",
 		"./icons": "./src/icons/index.tsx",
 		"./alert": "./src/components/alert.tsx",
+		"./avatar": "./src/components/avatar.tsx",
 		"./button": "./src/components/button.tsx",
 		"./form": "./src/components/form.tsx",
 		"./input-otp": "./src/components/input-otp.tsx",
@@ -36,6 +37,7 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.9.1",
+		"@radix-ui/react-avatar": "^1.1.2",
 		"@radix-ui/react-label": "^2.1.1",
 		"@radix-ui/react-separator": "^1.1.1",
 		"@radix-ui/react-slot": "^1.1.1",
