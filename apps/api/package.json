@@ -10,8 +10,8 @@
 		"clean": "git clean -xdf .turbo node_modules"
 	},
 	"devDependencies": {
+		"@polaris/typescript-config": "workspace:*",
 		"supabase": "^2.1.1",
-		"typescript": "^5.7.2",
-		"@polaris/typescript-config": "workspace:*"
+		"typescript": "^5.7.2"
 	}
 }
