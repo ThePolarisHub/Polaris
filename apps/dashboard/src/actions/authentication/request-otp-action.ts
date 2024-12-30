@@ -16,6 +16,7 @@ export const requestOtpCodeAction = actionClient
 		const { error } = await supabase.auth.signInWithOtp({ email });
 
 		if (error) {
+			console.log(error);
 			switch (error.code) {
 				case "email_address_not_authorized":
 					throw new Error(
