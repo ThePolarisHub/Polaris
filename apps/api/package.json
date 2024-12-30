@@ -6,7 +6,7 @@
 		"dev": "supabase start",
 		"stop": "supabase stop",
 		"reset": "supabase db reset",
-		"types": "supabase gen types typescript --local > src/types/database.ts",
+		"types": "supabase gen types typescript --local > ../../packages/supabase/src/types/db.ts",
 		"clean": "git clean -xdf .turbo node_modules"
 	},
 	"devDependencies": {

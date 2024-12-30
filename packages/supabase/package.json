@@ -1,0 +1,28 @@
+{
+	"name": "@polaris/supabase",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"clean": "rm -rf .turbo node_modules",
+		"lint": "biome check .",
+		"format": "biome format --write .",
+		"typecheck": "tsc --noEmit"
+	},
+	"exports": {
+		"./server": "./src/clients/server.ts",
+		"./client": "./src/clients/client.ts",
+		"./middleware": "./src/clients/middleware.ts",
+		"./types": "./src/types/index.ts"
+	},
+	"dependencies": {
+		"@supabase/ssr": "^0.5.2",
+		"@supabase/supabase-js": "^2.47.10",
+		"react": "^19.0.0",
+		"server-only": "^0.0.1",
+		"supabase": "^2.1.1"
+	},
+	"devDependencies": {
+		"@polaris/typescript-config": "workspace:*",
+		"typescript": "^5.7.2"
+	}
+}
