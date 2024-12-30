@@ -12,6 +12,8 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@polaris/env": "workspace:*",
+		"@polaris/supabase": "workspace:*",
 		"@polaris/ui": "workspace:*",
 		"next": "15.1.3",
 		"react": "^19.0.0",
