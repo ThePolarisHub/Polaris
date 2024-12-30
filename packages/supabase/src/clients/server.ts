@@ -1,3 +1,4 @@
+import { env } from "@polaris/env";
 import { createServerClient } from "@supabase/ssr";
 import { cookies, headers } from "next/headers";
 
@@ -42,8 +43,8 @@ export async function createClient(options?: CreateClientOptions) {
 	const headersList = await headers();
 
 	const key = admin
-		? (process.env.SUPABASE_SERVICE_KEY as string)
-		: (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string);
+		? env.SUPABASE_SERVICE_ROLE_KEY
+		: env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 	const auth = admin
 		? {
@@ -53,34 +54,30 @@ export async function createClient(options?: CreateClientOptions) {
 			}
 		: {};
 
-	return createServerClient(
-		process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-		key,
-		{
-			...rest,
-			cookies: {
-				getAll() {
-					return cookieStore.getAll();
-				},
-				setAll(cookiesToSet) {
-					try {
-						for (const { name, value, options } of cookiesToSet) {
-							cookieStore.set(name, value, options);
-						}
-					} catch {
-						// The `setAll` method was called from a Server Component.
-						// This can be ignored if you have middleware refreshing
-						// user sessions.
-					}
-				},
+	return createServerClient(env.NEXT_PUBLIC_SUPABASE_URL, key, {
+		...rest,
+		cookies: {
+			getAll() {
+				return cookieStore.getAll();
 			},
-			auth,
-			global: {
-				headers: {
-					// Pass user agent from browser
-					"user-agent": headersList.get("user-agent") as string,
-				},
+			setAll(cookiesToSet) {
+				try {
+					for (const { name, value, options } of cookiesToSet) {
+						cookieStore.set(name, value, options);
+					}
+				} catch {
+					// The `setAll` method was called from a Server Component.
+					// This can be ignored if you have middleware refreshing
+					// user sessions.
+				}
 			},
 		},
-	);
+		auth,
+		global: {
+			headers: {
+				// Pass user agent from browser
+				"user-agent": headersList.get("user-agent") as string,
+			},
+		},
+	});
 }

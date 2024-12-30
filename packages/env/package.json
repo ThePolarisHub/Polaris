@@ -1,0 +1,21 @@
+{
+	"name": "@polaris/env",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"main": "./src/index.ts",
+	"scripts": {
+		"clean": "rm -rf .turbo node_modules",
+		"lint": "biome check .",
+		"format": "biome format --write .",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@t3-oss/env-nextjs": "^0.11.1",
+		"zod": "^3.24.1"
+	},
+	"devDependencies": {
+		"@polaris/typescript-config": "workspace:*",
+		"typescript": "^5.7.2"
+	}
+}

@@ -2,6 +2,7 @@
 	"name": "@polaris/supabase",
 	"version": "1.0.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"clean": "rm -rf .turbo node_modules",
 		"lint": "biome check .",
@@ -15,6 +16,7 @@
 		"./types": "./src/types/index.ts"
 	},
 	"dependencies": {
+		"@polaris/env": "workspace:*",
 		"@supabase/ssr": "^0.5.2",
 		"@supabase/supabase-js": "^2.47.10",
 		"react": "^19.0.0",
