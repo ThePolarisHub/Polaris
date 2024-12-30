@@ -1,0 +1,17 @@
+{
+	"name": "@polaris/api",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "supabase start",
+		"stop": "supabase stop",
+		"reset": "supabase db reset",
+		"types": "supabase gen types typescript --local > src/types/database.ts",
+		"clean": "git clean -xdf .turbo node_modules"
+	},
+	"devDependencies": {
+		"supabase": "^2.1.1",
+		"typescript": "^5.7.2",
+		"@polaris/typescript-config": "workspace:*"
+	}
+}
