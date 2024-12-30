@@ -1,6 +1,7 @@
 import { env } from "@polaris/env";
 import { createServerClient } from "@supabase/ssr";
 import { cookies, headers } from "next/headers";
+import type { Database } from "../types";
 
 const conWarn = console.warn;
 const conLog = console.log;
@@ -54,7 +55,7 @@ export async function createClient(options?: CreateClientOptions) {
 			}
 		: {};
 
-	return createServerClient(env.NEXT_PUBLIC_SUPABASE_URL, key, {
+	return createServerClient<Database>(env.NEXT_PUBLIC_SUPABASE_URL, key, {
 		...rest,
 		cookies: {
 			getAll() {
