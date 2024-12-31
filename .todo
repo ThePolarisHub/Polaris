@@ -1,0 +1,33 @@
+☐ Journals database Schema
+  ☐ (apps:api) Create a journals table.
+  ☐ (apps:api) Create a journal_members table with an owner/member enum
+  ☐ (apps:api) Implement row-level security for the journals and journal_members tables.
+  ☐ (apps:api) Create an RPC function that creates a new journal and automatically adds the current user as an owner.
+  ☐ (apps:api) Update the profiles table to include a journal_id column, automatically set to the newly created journal’s ID for the current user.
+  ☐ (apps:api) Set profiles.journal_id to NULL when a journal is deleted.
+  ☐ (apps:api) Delete associated journal_members entries when a journal is deleted.
+
+☐ Supabase Journal Functions
+  ☐ (packages:supabase) Create a mutation for creating a new journal via the RPC function.
+  ☐ (packages:supabase) Create queries (including cached queries) to retrieve users’ journals.
+  ☐ (packages:supabase) Update profile queries to include journal_id and the associated journal using foreign keys.
+
+☐ Create Journal Page (/journals/create)
+  ☐ (apps:dashboard) Create a page with a form UI for creating a journal.
+  ☐ (apps:dashboard) Implement a server action to create a new journal and redirect to the dashboard on success.
+  ☐ (apps:dashboard) Provide efficient loading states and error handling using toast notifications or inline messages.
+
+☐ Journals List Page (/journals)
+  ☐ (apps:dashboard) Use the getJournals cached query to fetch journals.
+  ☐ (apps:dashboard) Redirect to the Create Journal Page if no journals exist.
+  ☐ (apps:dashboard) Implement middleware to redirect here if profiles.journal_id is not set.
+  ☐ (apps:dashboard) List the user’s journals and include a “Launch” button to set journal_id on the user’s profile and redirect to the dashboard (/).
+  ☐ (apps:dashboard) Add a “Create New Journal” button that routes the user to the Create Journal Page.
+
+☐ Implement Shadcn UI Sidebar in the Dashboard
+  ☐ (package:ui) Install Shadcn UI Sidebar.
+  ☐ (apps:dashboard) Add the sidebar to the (sidebar) layout.
+  ☐ (apps:dashboard) Implement a user popover showing user data and a logout button.
+  ☐ (apps:dashboard) Configure basic sidebar navigation.
+  ☐ (apps:dashboard) Implement a journal popover that lists available journals and allows users to select and launch a journal.
+  ☐ (apps:dashboard) Add a link to “All Journals” that redirects to the Journals List Page.
