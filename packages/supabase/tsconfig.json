@@ -1,11 +1,10 @@
 {
 	"extends": "@polaris/typescript-config/base.json",
 	"compilerOptions": {
-		"module": "ESNext",
 		"moduleResolution": "Bundler",
-		"baseUrl": ".",
+		"module": "Preserve",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@polaris/env": ["../env/src"]
 		}
 	},
 	"include": ["src", "."],

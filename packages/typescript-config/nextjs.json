@@ -1,18 +1,19 @@
 {
+	// Schema and metadata
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"display": "Next.js",
 	"extends": "./base.json",
 	"compilerOptions": {
+		// Next.js specific configuration
 		"plugins": [{ "name": "next" }],
+
+		// Module settings
 		"module": "ESNext",
 		"moduleResolution": "Bundler",
+
+		// Compilation options
 		"allowJs": true,
 		"jsx": "preserve",
-		"noEmit": true,
-		"paths": {
-			"@/*": ["./*"],
-			"@repo/*": ["../../packages/*"]
-		}
-	},
-	"exclude": ["node_modules"]
+		"noEmit": true
+	}
 }

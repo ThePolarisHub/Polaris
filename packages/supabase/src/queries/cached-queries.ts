@@ -1,9 +1,9 @@
 import "server-only";
 
-import { createClient } from "@/clients/server";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
-import { getProfileQuery } from ".";
+import { createClient } from "../clients/server";
+import { getProfileQuery } from "./index";
 
 // Cache per request
 export const getSession = cache(async () => {
@@ -12,7 +12,7 @@ export const getSession = cache(async () => {
 	return supabase.auth.getSession();
 });
 
-export const getProfile = cache(async () => {
+export const getProfile = async () => {
 	const {
 		data: { session },
 	} = await getSession();
@@ -36,4 +36,4 @@ export const getProfile = cache(async () => {
 			revalidate: 1800,
 		},
 	)();
-});
+};

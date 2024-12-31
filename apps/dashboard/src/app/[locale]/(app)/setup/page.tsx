@@ -1,8 +1,11 @@
 import { SetupProfileForm } from "@/components/setup-profile-form";
+import { getProfile } from "@polaris/supabase/cached-queries";
 import { Icons } from "@polaris/ui/icons";
 import Link from "next/link";
 
-export default function SetupPage() {
+export default async function SetupPage() {
+	const profile = await getProfile();
+
 	return (
 		<div>
 			<header className="w-full fixed left-0 right-0">
@@ -20,7 +23,7 @@ export default function SetupPage() {
 					<p className="text-sm text-[#878787] mb-8">
 						Set your display name and an optional avatar.
 					</p>
-					<SetupProfileForm />
+					<SetupProfileForm profile={profile} />
 				</div>
 			</div>
 		</div>

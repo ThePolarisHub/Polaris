@@ -1,8 +1,6 @@
 {
 	"extends": "@polaris/typescript-config/react-library.json",
 	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "bundler",
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"]

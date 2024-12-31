@@ -33,7 +33,10 @@ export function LoginForm() {
 
 	const requestOtpCode = useAction(requestOtpCodeAction, {
 		onSuccess: (data) => {
-			toast.success("Check your inbox for a verification code");
+			toast("Verification Code Sent!", {
+				description:
+					"We've sent a verification code to your email. Please check your inbox and spam folder.",
+			});
 			setEmail(data.input.email);
 			form.clearErrors();
 		},
@@ -45,16 +48,27 @@ export function LoginForm() {
 				return;
 			}
 
-			toast.error(error.error.serverError);
+			toast("Oops! Something Went Wrong", {
+				description:
+					error.error.serverError ??
+					"We're having trouble sending your verification code. Please try again in a moment or contact support if the issue persists.",
+			});
 		},
 	});
 
 	const verifyOtpCode = useAction(verifyOtpCodeAction, {
 		onSuccess: () => {
-			toast.success("Successfully logged in");
+			toast("Welcome!", {
+				description:
+					"You've successfully logged in. We're excited to have you here!",
+			});
 		},
 		onError: (error) => {
-			toast.error(error.error.serverError);
+			toast("Verification failed", {
+				description:
+					error.error.serverError ??
+					"We couldn't verify your code. Please check the code and try again.",
+			});
 		},
 	});
 

@@ -7,10 +7,6 @@ import { requestOtpCodeSchema } from "./_schema";
 export const requestOtpCodeAction = actionClient
 	.schema(requestOtpCodeSchema)
 	.action(async ({ parsedInput: { email } }) => {
-		if (!email) {
-			throw new Error("Email is required");
-		}
-
 		const supabase = await createClient();
 
 		const { error } = await supabase.auth.signInWithOtp({ email });
@@ -20,27 +16,31 @@ export const requestOtpCodeAction = actionClient
 			switch (error.code) {
 				case "email_address_not_authorized":
 					throw new Error(
-						"Email sending is not allowed for this address. Please contact support.",
+						"We're unable to send emails to this address. Please reach out to our support team for assistance.",
 					);
 				case "email_address_invalid":
 					throw new Error(
-						"Invalid email address. Please use a different email.",
+						"Hmm, that email address doesn't look quite right. Could you please double-check it?",
 					);
 				case "over_email_send_rate_limit":
 					throw new Error(
-						"Too many emails sent. Please wait a while before trying again.",
+						"We've sent quite a few emails already. Please wait a few minutes before requesting another code.",
 					);
 				case "over_request_rate_limit":
 					throw new Error(
-						"Too many requests. Please try again in a few minutes.",
+						"Looks like you're trying this a bit too frequently. Please take a short break and try again in a few minutes.",
 					);
 				case "email_provider_disabled":
-					throw new Error("Email sign-in is currently disabled.");
+					throw new Error(
+						"Sorry, email sign-in isn't available right now. Please try again later.",
+					);
 				case "signup_disabled":
-					throw new Error("Sign ups are currently disabled.");
+					throw new Error(
+						"We're not accepting new sign-ups at the moment. Please check back later.",
+					);
 				default:
 					throw new Error(
-						"Failed to send verification code. Please try again.",
+						"Oops! We couldn't send your verification code. Please try again.",
 					);
 			}
 		}

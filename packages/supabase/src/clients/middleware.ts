@@ -1,7 +1,7 @@
 import { env } from "@polaris/env";
 import { createServerClient } from "@supabase/ssr";
 import type { NextRequest, NextResponse } from "next/server";
-import type { Database } from "../types";
+import type { Database } from "../types/db";
 
 export async function updateSession(
 	request: NextRequest,

@@ -74,8 +74,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA "extensions";
 
 CREATE OR REPLACE FUNCTION "public"."handle_auth_user_changes"() RETURNS "trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
-    AS $$
-BEGIN
+    AS $$BEGIN
   IF (TG_OP = 'INSERT') THEN
     -- Insert a matching profile row whenever a new user is created
     INSERT INTO public.profiles (id, email)
@@ -88,14 +87,13 @@ BEGIN
   ELSIF (TG_OP = 'UPDATE') THEN
     -- Update relevant columns in profiles whenever auth.users is updated
     UPDATE public.profiles
-       SET email        = NEW.email
+       SET email        = NEW.email, display_name = NEW.raw_user_meta_data->>'display_name'
      WHERE id = NEW.id;
     RETURN NEW;
   END IF;
 
   RETURN NULL;
-END;
-$$;
+END;$$;
 
 
 ALTER FUNCTION "public"."handle_auth_user_changes"() OWNER TO "postgres";

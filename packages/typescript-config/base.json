@@ -1,21 +1,26 @@
 {
+	// Schema and metadata
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"display": "Default",
 	"compilerOptions": {
-		"declaration": true,
-		"declarationMap": true,
+		// Module configuration
 		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"incremental": false,
-		"isolatedModules": true,
-		"lib": ["es2022", "DOM", "DOM.Iterable"],
 		"module": "NodeNext",
 		"moduleDetection": "force",
 		"moduleResolution": "NodeNext",
 		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"strict": true,
+
+		// Compilation settings
+		"incremental": false,
+		"isolatedModules": true,
 		"target": "ES2022",
-		"strictNullChecks": true
+
+		// Type checking
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"skipLibCheck": true,
+
+		// Runtime libraries
+		"lib": ["es2022", "DOM", "DOM.Iterable"]
 	}
 }

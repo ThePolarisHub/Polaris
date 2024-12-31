@@ -7,6 +7,8 @@
 		"stop": "supabase stop",
 		"reset": "supabase db reset",
 		"types": "supabase gen types typescript --local > ../../packages/supabase/src/types/db.ts",
+		"pull": "supabase db pull --local --schema auth,storage",
+		"dump": "supabase db dump --data-only --schema storage -f supabase/seed.sql",
 		"clean": "git clean -xdf .turbo node_modules"
 	},
 	"devDependencies": {

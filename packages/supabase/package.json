@@ -2,7 +2,6 @@
 	"name": "@polaris/supabase",
 	"version": "1.0.0",
 	"private": true,
-	"type": "module",
 	"scripts": {
 		"clean": "rm -rf .turbo node_modules",
 		"lint": "biome check .",
@@ -13,7 +12,11 @@
 		"./server": "./src/clients/server.ts",
 		"./client": "./src/clients/client.ts",
 		"./middleware": "./src/clients/middleware.ts",
-		"./types": "./src/types/index.ts"
+		"./types": "./src/types/index.ts",
+		"./mutations": "./src/mutations/index.ts",
+		"./queries": "./src/queries/index.ts",
+		"./cached-queries": "./src/queries/cached-queries.ts",
+		"./storage": "./src/utils/storage.ts"
 	},
 	"dependencies": {
 		"@polaris/env": "workspace:*",

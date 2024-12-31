@@ -1,7 +1,7 @@
 import { env } from "@polaris/env";
 import { createServerClient } from "@supabase/ssr";
 import { cookies, headers } from "next/headers";
-import type { Database } from "../types";
+import type { Database } from "../types/db";
 
 const conWarn = console.warn;
 const conLog = console.log;
