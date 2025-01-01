@@ -50,7 +50,6 @@ export function LoginForm() {
 
 			toast("Oops! Something Went Wrong", {
 				description:
-					error.error.serverError ??
 					"We're having trouble sending your verification code. Please try again in a moment or contact support if the issue persists.",
 			});
 		},
@@ -66,7 +65,6 @@ export function LoginForm() {
 		onError: (error) => {
 			toast("Verification failed", {
 				description:
-					error.error.serverError ??
 					"We couldn't verify your code. Please check the code and try again.",
 			});
 		},

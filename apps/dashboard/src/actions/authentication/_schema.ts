@@ -39,7 +39,7 @@ export const updateProfileSchema = z.object({
 		)
 		.refine(
 			(file) => !file || AVATAR_ACCEPTED_IMAGE_TYPES.includes(file.type),
-			"We can only accept JPG, PNG or WebP images at the moment. Mind trying one of those formats?",
+			"We can only accept JPG, PNG or SVG images at the moment. Mind trying one of those formats?",
 		)
 		.optional(),
 });

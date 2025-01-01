@@ -19,7 +19,7 @@ import {
 import { Icons } from "@polaris/ui/icons";
 import { Input } from "@polaris/ui/input";
 import { useAction } from "next-safe-action/hooks";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
@@ -30,6 +30,10 @@ interface SetupProfileFormProps {
 
 export function SetupProfileForm({ profile }: SetupProfileFormProps) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const [avatarPreviewUrl, setAvatarPreviewUrl] = useState<string | undefined>(
+		profile?.data?.avatar_url ?? undefined,
+	);
+
 	const form = useForm<z.infer<typeof updateProfileSchema>>({
 		resolver: zodResolver(updateProfileSchema),
 		defaultValues: {
@@ -38,9 +42,14 @@ export function SetupProfileForm({ profile }: SetupProfileFormProps) {
 	});
 
 	const avatarFile = form.watch("avatar");
-	const avatarPreviewUrl = avatarFile
-		? URL.createObjectURL(avatarFile)
-		: undefined;
+
+	useEffect(() => {
+		if (avatarFile) {
+			const url = URL.createObjectURL(avatarFile);
+			setAvatarPreviewUrl(url);
+			return () => URL.revokeObjectURL(url);
+		}
+	}, [avatarFile]);
 
 	const updateProfile = useAction(updateProfileAction, {
 		onSuccess: () => {
@@ -52,13 +61,13 @@ export function SetupProfileForm({ profile }: SetupProfileFormProps) {
 		onError: (error) => {
 			toast("Oops, something went wrong", {
 				description:
-					error.error.serverError ??
 					"We couldn't save your profile changes. Please try again in a moment.",
 			});
 		},
 	});
 
 	function onSubmit(values: z.infer<typeof updateProfileSchema>) {
+		console.log(values);
 		updateProfile.execute(values);
 	}
 
@@ -112,6 +121,7 @@ export function SetupProfileForm({ profile }: SetupProfileFormProps) {
 									</Button>
 								</div>
 							</FormControl>
+							<FormMessage />
 						</FormItem>
 					)}
 				/>

@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/otp-login-form";
+import { LoginForm } from "@/components/forms/otp-login-form";
 import { Icons } from "@polaris/ui/icons";
 import Link from "next/link";
 
