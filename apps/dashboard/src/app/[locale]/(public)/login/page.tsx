@@ -17,9 +17,9 @@ export default function LoginPage() {
 			<div className="flex min-h-screen justify-center items-center overflow-hidden p-6 md:p-0">
 				<div className="relative z-20 m-auto flex w-full max-w-[380px] flex-col py-8">
 					<div className="flex w-full flex-col relative">
-						<div className="pb-4 bg-gradient-to-r from-primary dark:via-primary dark:to-[#848484] to-[#000] inline-block text-transparent bg-clip-text">
-							<h1 className="font-medium pb-1 text-3xl">Login to polaris.</h1>
-						</div>
+						<h1 className="font-medium text-foreground pb-5 text-3xl">
+							Login to polaris.
+						</h1>
 
 						<p className="font-medium pb-1 text-2xl text-[#878787]">
 							Transform your trading journey <br />

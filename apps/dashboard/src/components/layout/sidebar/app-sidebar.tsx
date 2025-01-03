@@ -7,204 +7,114 @@ import {
 	type JournalSwitcherProps,
 } from "@/components/layout/sidebar/journal-switcher";
 import { NavUser } from "@/components/layout/sidebar/nav-user";
+import { Button } from "@polaris/ui/button";
+import { cn } from "@polaris/ui/cn";
 import { Icons } from "@polaris/ui/icons";
-import {
-	Sidebar,
-	SidebarContent,
-	SidebarFooter,
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarGroupLabel,
-	SidebarHeader,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarRail,
-} from "@polaris/ui/sidebar";
-
-// This is sample data.
-const data = {
-	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
-	},
-	teams: [
-		{
-			name: "Acme Inc",
-			logo: Icons.CloseIcon,
-			plan: "Enterprise",
-		},
-		{
-			name: "Acme Corp.",
-			logo: Icons.CloseIcon,
-			plan: "Startup",
-		},
-		{
-			name: "Evil Corp.",
-			logo: Icons.CloseIcon,
-			plan: "Free",
-		},
-	],
-	navMain: [
-		{
-			title: "Playground",
-			url: "#",
-			icon: Icons.CloseIcon,
-			isActive: true,
-			items: [
-				{
-					title: "History",
-					url: "#",
-				},
-				{
-					title: "Starred",
-					url: "#",
-				},
-				{
-					title: "Settings",
-					url: "#",
-				},
-			],
-		},
-		{
-			title: "Models",
-			url: "#",
-			icon: Icons.CloseIcon,
-			items: [
-				{
-					title: "Genesis",
-					url: "#",
-				},
-				{
-					title: "Explorer",
-					url: "#",
-				},
-				{
-					title: "Quantum",
-					url: "#",
-				},
-			],
-		},
-		{
-			title: "Documentation",
-			url: "#",
-			icon: Icons.CloseIcon,
-			items: [
-				{
-					title: "Introduction",
-					url: "#",
-				},
-				{
-					title: "Get Started",
-					url: "#",
-				},
-				{
-					title: "Tutorials",
-					url: "#",
-				},
-				{
-					title: "Changelog",
-					url: "#",
-				},
-			],
-		},
-		{
-			title: "Settings",
-			url: "#",
-			icon: Icons.CloseIcon,
-			items: [
-				{
-					title: "General",
-					url: "#",
-				},
-				{
-					title: "Team",
-					url: "#",
-				},
-				{
-					title: "Billing",
-					url: "#",
-				},
-				{
-					title: "Limits",
-					url: "#",
-				},
-			],
-		},
-	],
-	projects: [
-		{
-			name: "Design Engineering",
-			url: "#",
-			icon: Icons.CloseIcon,
-		},
-		{
-			name: "Sales & Marketing",
-			url: "#",
-			icon: Icons.CloseIcon,
-		},
-		{
-			name: "Travel",
-			url: "#",
-			icon: Icons.CloseIcon,
-		},
-	],
-};
+import { Sidebar, SidebarContent, SidebarHeader } from "@polaris/ui/sidebar";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
+import { SidebarDefaultMenu } from "./default-menu";
+import { SidebarFooterMenu } from "./footer-menu";
+import { SidebarSettingsMenu } from "./settings-menu";
 
 interface AppSidebarProps
 	extends React.ComponentProps<typeof Sidebar>,
 		JournalSwitcherProps {}
 
-export function AppSidebar(props: AppSidebarProps) {
+function Area({
+	children,
+	visible,
+	direction,
+}: React.PropsWithChildren<{ visible: boolean; direction: "left" | "right" }>) {
 	return (
-		<Sidebar collapsible="icon" {...props}>
-			<SidebarHeader className="flex items-center flex-row justify-between pt-4">
+		<div
+			className={cn(
+				"left-0 top-0 flex size-full flex-col md:transition-[opacity,transform] md:duration-300",
+				visible
+					? "opacity-100 relative"
+					: cn(
+							"pointer-events-none absolute opacity-0",
+							direction === "left" ? "-translate-x-full" : "translate-x-full",
+						),
+			)}
+			aria-hidden={!visible ? "true" : undefined}
+			inert={!visible ? true : undefined}
+		>
+			{children}
+		</div>
+	);
+}
+
+export function AppSidebar(props: AppSidebarProps) {
+	const pathname = usePathname();
+
+	const currentArea = useMemo(() => {
+		return pathname.startsWith("/settings") ? "settings" : "dashboard";
+	}, [pathname]);
+
+	return (
+		<Sidebar {...props}>
+			<SidebarHeader>
+				<div className="flex items-center flex-row justify-between">
+					<div className="relative">
+						<div
+							className={cn(
+								"absolute inset-0 transition-opacity duration-200",
+								currentArea === "settings"
+									? "opacity-100"
+									: "opacity-0 pointer-events-none",
+							)}
+						>
+							<Link href="/">
+								<Button
+									variant="ghost"
+									size="sm"
+									className="px-1.5 text-foreground hover:bg-transparent"
+								>
+									<Icons.ChevronLeftIcon
+										className="max-w-3 max-h-3 text-foreground"
+										strokeWidth={2.5}
+									/>
+									<span className="text-sm">Settings</span>
+								</Button>
+							</Link>
+						</div>
+						<div
+							className={cn(
+								"transition-opacity duration-200",
+								currentArea === "settings"
+									? "opacity-0 pointer-events-none"
+									: "opacity-100",
+							)}
+						>
+							<Link href="/">
+								<Button
+									variant="ghost"
+									size="sm"
+									className="px-1.5 text-foreground hover:bg-transparent font-bold"
+								>
+									<span className="text-lg">Polaris</span>
+								</Button>
+							</Link>
+						</div>
+					</div>
+					<div>
+						<NavUser {...props} />
+					</div>
+				</div>
 				<div>
 					<JournalSwitcher {...props} />
 				</div>
-				<div>
-					<NavUser {...props} />
-				</div>
 			</SidebarHeader>
-			<SidebarContent>
-				<SidebarGroup className="group-data-[collapsible=icon]:hidden">
-					<SidebarGroupLabel>Navigation</SidebarGroupLabel>
-					<SidebarMenu>
-						{data.projects.map((item) => (
-							<SidebarMenuItem key={item.name}>
-								<SidebarMenuButton asChild>
-									<a href={item.url}>
-										<Icons.CloseIcon />
-										<span>{item.name}</span>
-									</a>
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-						))}
-					</SidebarMenu>
-				</SidebarGroup>
-				<SidebarGroup className="mt-auto">
-					<SidebarGroupContent>
-						<SidebarMenu>
-							<SidebarMenuItem>
-								<SidebarMenuButton asChild>
-									<a href="/">
-										<Icons.BuoyIcon />
-										<span>Support</span>
-									</a>
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-							<SidebarMenuItem>
-								<SidebarMenuButton asChild>
-									<a href="/">
-										<Icons.MegaphoneIcon />
-										<span>Feedback</span>
-									</a>
-								</SidebarMenuButton>
-							</SidebarMenuItem>
-						</SidebarMenu>
-					</SidebarGroupContent>
-				</SidebarGroup>
+			<SidebarContent className="relative w-full">
+				<Area visible={currentArea === "dashboard"} direction="left">
+					<SidebarDefaultMenu />
+				</Area>
+				<Area visible={currentArea === "settings"} direction="right">
+					<SidebarSettingsMenu />
+				</Area>
+				<SidebarFooterMenu />
 			</SidebarContent>
 		</Sidebar>
 	);

@@ -12,6 +12,7 @@ export type Database = {
 			journal_members: {
 				Row: {
 					created_at: string;
+					id: string;
 					journal_id: string;
 					role: Database["public"]["Enums"]["journal_role_enum"];
 					updated_at: string;
@@ -19,6 +20,7 @@ export type Database = {
 				};
 				Insert: {
 					created_at?: string;
+					id?: string;
 					journal_id: string;
 					role: Database["public"]["Enums"]["journal_role_enum"];
 					updated_at?: string;
@@ -26,6 +28,7 @@ export type Database = {
 				};
 				Update: {
 					created_at?: string;
+					id?: string;
 					journal_id?: string;
 					role?: Database["public"]["Enums"]["journal_role_enum"];
 					updated_at?: string;
@@ -103,6 +106,79 @@ export type Database = {
 					},
 				];
 			};
+			trades: {
+				Row: {
+					created_at: string;
+					id: string;
+					journal_id: string;
+					symbol: string;
+					updated_at: string;
+				};
+				Insert: {
+					created_at?: string;
+					id?: string;
+					journal_id: string;
+					symbol: string;
+					updated_at?: string;
+				};
+				Update: {
+					created_at?: string;
+					id?: string;
+					journal_id?: string;
+					symbol?: string;
+					updated_at?: string;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "trades_journal_id_fkey";
+						columns: ["journal_id"];
+						isOneToOne: false;
+						referencedRelation: "journals";
+						referencedColumns: ["id"];
+					},
+				];
+			};
+			transactions: {
+				Row: {
+					created_at: string;
+					id: string;
+					price: string;
+					quantity: string;
+					timestamp: string;
+					trade_id: string;
+					type: Database["public"]["Enums"]["transaction_type_enum"];
+					updated_at: string;
+				};
+				Insert: {
+					created_at?: string;
+					id?: string;
+					price: string;
+					quantity: string;
+					timestamp: string;
+					trade_id: string;
+					type: Database["public"]["Enums"]["transaction_type_enum"];
+					updated_at?: string;
+				};
+				Update: {
+					created_at?: string;
+					id?: string;
+					price?: string;
+					quantity?: string;
+					timestamp?: string;
+					trade_id?: string;
+					type?: Database["public"]["Enums"]["transaction_type_enum"];
+					updated_at?: string;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "transactions_trade_id_fkey";
+						columns: ["trade_id"];
+						isOneToOne: false;
+						referencedRelation: "trades";
+						referencedColumns: ["id"];
+					},
+				];
+			};
 		};
 		Views: {
 			[_ in never]: never;
@@ -129,6 +205,7 @@ export type Database = {
 		};
 		Enums: {
 			journal_role_enum: "owner" | "member";
+			transaction_type_enum: "buy" | "sell";
 		};
 		CompositeTypes: {
 			[_ in never]: never;

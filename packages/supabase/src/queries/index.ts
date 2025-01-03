@@ -22,3 +22,14 @@ export async function getJournalsQuery(supabase: Client, userId: string) {
 		.eq("user_id", userId)
 		.throwOnError();
 }
+
+export async function getTradesQuery(supabase: Client, journalId: string) {
+	return supabase
+		.from("trades")
+		.select(`
+			*,
+			transactions:transactions!trade_id(*)
+			`)
+		.eq("journal_id", journalId)
+		.throwOnError();
+}

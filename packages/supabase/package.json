@@ -12,6 +12,7 @@
 		"./server": "./src/clients/server.ts",
 		"./client": "./src/clients/client.ts",
 		"./middleware": "./src/clients/middleware.ts",
+		"./job": "./src/clients/job.ts",
 		"./types": "./src/types/index.ts",
 		"./mutations": "./src/mutations/index.ts",
 		"./queries": "./src/queries/index.ts",

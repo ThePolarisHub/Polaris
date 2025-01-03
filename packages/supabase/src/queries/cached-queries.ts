@@ -3,7 +3,7 @@ import "server-only";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { createClient } from "../clients/server";
-import { getJournalsQuery, getProfileQuery } from "./index";
+import { getJournalsQuery, getProfileQuery, getTradesQuery } from "./index";
 
 // Cache per request
 export const getSession = cache(async () => {
@@ -59,6 +59,31 @@ export const getJournals = async () => {
 		{
 			tags: [`journals_${userId}`],
 			revalidate: 180,
+		},
+	)();
+};
+
+export const getTrades = async (journalId: string) => {
+	const {
+		data: { session },
+	} = await getSession();
+
+	const userId = session?.user?.id;
+
+	if (!userId) {
+		return null;
+	}
+
+	const supabase = await createClient();
+
+	return unstable_cache(
+		async () => {
+			return getTradesQuery(supabase, journalId);
+		},
+		["trades", journalId],
+		{
+			tags: [`trades_${journalId}`],
+			revalidate: 600,
 		},
 	)();
 };

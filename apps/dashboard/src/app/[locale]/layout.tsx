@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@polaris/ui/globals.css";
 import { Providers } from "@/components/providers";
+
 import { cn } from "@polaris/ui/cn";
 
 const geistSans = Geist({

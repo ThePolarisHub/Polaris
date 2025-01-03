@@ -40,9 +40,9 @@ export function NavUser({ profile }: NavUserProps) {
 			<SidebarMenuItem>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground rounded-full p-1">
+						<SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-foreground rounded-full p-0 px-0.5 hover:bg-transparent">
 							<ProfileAvatar
-								className="h-6 w-6 rounded-full"
+								className="h-7 w-7 rounded-full hover:border-foreground/20 transition-all duration-200 hover:ring-4 hover:ring-ring/20 border-foreground/20"
 								name={profile?.data?.display_name ?? ""}
 								avatarUrl={profile?.data?.avatar_url}
 							/>

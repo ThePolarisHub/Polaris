@@ -32,29 +32,39 @@ export interface JournalSwitcherProps {
 
 export function JournalSwitcher({ profile, journals }: JournalSwitcherProps) {
 	const changeJournal = useAction(changeJournalAction);
-	const { isMobile } = useSidebar();
+
+	const activeJournal = React.useMemo(() => {
+		return journals?.data?.find(
+			(journal) => journal.id === profile?.data?.journal_id,
+		);
+	}, [profile?.data?.journal_id, journals?.data]);
 
 	return (
 		<SidebarMenu>
 			<SidebarMenuItem>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground px-1.5">
+						<SidebarMenuButton
+							size="lg"
+							className="data-[state=open]:bg-sidebar-accent group data-[state=open]:text-foreground px-1.5 hover:bg-sidebar-accent transition-all duration-150"
+						>
 							<JournalLogo
-								className="h-6 w-6 rounded"
-								name={profile?.data?.journal?.name ?? ""}
-								logoUrl={profile?.data?.journal?.logo_url}
+								className="h-8 w-8 rounded"
+								name={activeJournal?.name ?? ""}
+								logoUrl={activeJournal?.logo_url}
 							/>
-
-							<div className="grid flex-1 text-left text-sm leading-tight truncate font-medium">
-								<span className="truncate">{profile?.data?.journal?.name}</span>
+							<div className="grid flex-1 text-left text-sm leading-tight">
+								<span className="truncate font-semibold">
+									{activeJournal?.name}
+								</span>
+								<span className="truncate text-xs">{activeJournal?.role}</span>
 							</div>
-							<ChevronsUpDown className="ml-auto" />
+							<ChevronsUpDown className="ml-auto text-muted-foreground group-hover:text-foreground" />
 						</SidebarMenuButton>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
-						className="w-60 rounded-lg -ml-1 shadow-sm"
-						align="start"
+						className="w-[--radix-dropdown-menu-trigger-width] rounded-lg shadow-sm"
+						align="center"
 						side="bottom"
 						sideOffset={4}
 					>
